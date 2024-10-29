@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%block content %}
+<style>
+    .card{
+        margin-top: 15px;
+    }
+</style>
+<div class="container" style="width: 90%;">
+    {% for writing in writings %}
+    <div class="card" >
+        <div class="card-header" style="background-color: rgb(131, 199, 201);">
+            <h2>{{ writing.username }} </h2>
+        </div>
+        <div class="card-body"> 
+            <p class="card-text">{{ writing.message }}</p>
+        </div>
+        {% if writing.username == user %}
+            <a href="{% url 'blog_app:delete' id=writing.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{%endblock%}
